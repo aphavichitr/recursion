@@ -10,27 +10,19 @@ var stringifyJSON = function(obj) {
   } else if (typeof obj === 'string') {
     return '"' + obj + '"';
   } else if (Array.isArray(obj)) {
-    if (obj.length === 0) {
-      return '[]';
-    } else {
-      var arrContents = [];
-      for (var i = 0; i < obj.length; i++) {
-        arrContents.push(stringifyJSON(obj[i]));
-      }
-      return '[' + arrContents + ']';
+    var arrContents = [];
+    for (var i = 0; i < obj.length; i++) {
+      arrContents.push(stringifyJSON(obj[i]));
     }
+    return '[' + arrContents + ']';
   } else if (typeof obj === 'object') {
-    if (Object.keys(obj).length === 0) {
-      return '{}';
-    } else {
-      var objContents = [];
-      for (var key in obj) {
-        if (typeof obj[key] === 'function' || obj[key] === undefined) {
-          continue;
-        } 
-        objContents.push(stringifyJSON(key) + ':' + stringifyJSON(obj[key]));
-      }
-      return '{' + objContents.join() + '}';
+    var objContents = [];
+    for (var key in obj) {
+      if (typeof obj[key] === 'function' || obj[key] === undefined) {
+        continue;
+      } 
+      objContents.push(stringifyJSON(key) + ':' + stringifyJSON(obj[key]));
     }
+    return '{' + objContents.join() + '}';
   }
 };
