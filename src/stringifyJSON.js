@@ -23,6 +23,6 @@ var stringifyJSON = function(obj) {
       } 
       objContents.push(stringifyJSON(key) + ':' + stringifyJSON(obj[key]));
     }
-    return '{' + objContents.join() + '}';
+    return '{' + objContents + '}';
   }
 };
